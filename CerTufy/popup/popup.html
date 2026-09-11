@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CerTufy</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<div class="certufy-popup-container">
+  <div class="certufy-popup-header">
+    <div class="certufy-popup-brand"><span class="certufy-popup-icon">🎓</span><span class="certufy-popup-title">CerTufy</span></div>
+    <div class="certufy-popup-version">v2.1</div>
+  </div>
+  <div class="certufy-popup-tabs">
+    <button class="certufy-tab-btn active" data-tab="current"><span>📺</span><span>Current</span></button>
+    <button class="certufy-tab-btn" data-tab="certificates"><span>📜</span><span>Certs</span></button>
+    <button class="certufy-tab-btn" data-tab="analytics"><span>📊</span><span>Stats</span></button>
+    <button class="certufy-tab-btn" data-tab="settings"><span>⚙️</span><span>Settings</span></button>
+    <button class="certufy-tab-btn" data-tab="verify"><span>✅</span><span>Verify</span></button>
+  </div>
+  <div class="certufy-popup-content">
+    <div class="certufy-tab-panel active" id="tab-current">
+      <div class="certufy-current-video">
+        <div class="certufy-current-label">Currently Watching</div>
+        <div class="certufy-current-title" id="current-video-title">No video playing</div>
+        <div class="certufy-current-playlist" id="current-playlist-title"></div>
+      </div>
+      <div class="certufy-progress-section">
+        <div class="certufy-progress-label"><span>Video Progress</span><span id="video-progress-text">0%</span></div>
+        <div class="certufy-progress-bar-container"><div class="certufy-progress-bar certufy-video-progress" id="video-progress-bar" style="width:0%"></div></div>
+      </div>
+      <div class="certufy-progress-section" id="playlist-section" style="display:none">
+        <div class="certufy-progress-label"><span>Course Progress</span><span id="playlist-progress-text">0%</span></div>
+        <div class="certufy-progress-bar-container"><div class="certufy-progress-bar certufy-playlist-progress" id="playlist-progress-bar" style="width:0%"></div></div>
+      </div>
+      <button class="certufy-btn certufy-btn-primary" id="generate-cert-btn" disabled>🎓 Generate Certificate</button>
+      <button class="certufy-btn certufy-btn-secondary" id="resume-btn" style="display:none">⏯️ Resume Session</button>
+    </div>
+
+    <div class="certufy-tab-panel" id="tab-certificates">
+      <div class="certufy-certificates-header">
+        <div class="certufy-certificates-title">My Certificates</div>
+        <div class="certufy-certificates-count" id="cert-count">0</div>
+      </div>
+      <div class="certufy-certificates-list" id="certificates-list">
+        <div class="certufy-empty-state"><span class="certufy-empty-icon">📭</span><span class="certufy-empty-text">No certificates yet</span></div>
+      </div>
+    </div>
+
+    <div class="certufy-tab-panel" id="tab-analytics">
+      <div class="certufy-analytics-grid">
+        <div class="certufy-analytics-card"><div class="certufy-analytics-label">Tracked</div><div class="certufy-analytics-value" id="total-videos">0</div></div>
+        <div class="certufy-analytics-card"><div class="certufy-analytics-label">Completed</div><div class="certufy-analytics-value" id="completed-videos">0</div></div>
+        <div class="certufy-analytics-card"><div class="certufy-analytics-label">Watch Time</div><div class="certufy-analytics-value" id="total-watch-time">0m</div></div>
+        <div class="certufy-analytics-card"><div class="certufy-analytics-label">Certificates</div><div class="certufy-analytics-value" id="certificates-earned">0</div></div>
+        <div class="certufy-analytics-card"><div class="certufy-analytics-label">Courses</div><div class="certufy-analytics-value" id="playlists-completed">0</div></div>
+        <div class="certufy-analytics-card"><div class="certufy-analytics-label">Completion</div><div class="certufy-analytics-value" id="completion-rate">0%</div></div>
+      </div>
+      <button class="certufy-btn certufy-btn-secondary" id="refresh-analytics-btn">🔄 Refresh</button>
+    </div>
+
+    <div class="certufy-tab-panel" id="tab-settings">
+      <h3 class="certufy-settings-title">User Profile</h3>
+      <div class="certufy-settings-field"><label for="user-name">Name</label><input type="text" id="user-name" class="certufy-input" placeholder="Your name"></div>
+      <div class="certufy-settings-field"><label for="user-email">Email</label><input type="email" id="user-email" class="certufy-input" placeholder="you@example.com"></div>
+      <button class="certufy-btn certufy-btn-primary" id="save-user-btn">💾 Save Profile</button>
+
+      <hr class="certufy-settings-divider">
+      <h3 class="certufy-settings-title">Preferences</h3>
+      <div class="certufy-settings-toggle">
+        <label for="dark-mode-toggle">🌙 Dark Mode</label>
+        <label class="certufy-toggle-switch"><input type="checkbox" id="dark-mode-toggle"><span class="certufy-toggle-slider"></span></label>
+      </div>
+      <div class="certufy-settings-toggle">
+        <label for="notifications-toggle">🔔 Notifications</label>
+        <label class="certufy-toggle-switch"><input type="checkbox" id="notifications-toggle" checked><span class="certufy-toggle-slider"></span></label>
+      </div>
+
+      <hr class="certufy-settings-divider">
+      <h3 class="certufy-settings-title">Data</h3>
+      <button class="certufy-btn certufy-btn-secondary" id="export-data-btn">📤 Export All Data</button>
+      <button class="certufy-btn certufy-btn-secondary" id="import-data-btn">📥 Import Data</button>
+      <button class="certufy-btn certufy-btn-danger" id="clear-data-btn">🗑️ Clear All Data</button>
+      <input type="file" id="import-file-input" accept=".json" style="display:none">
+    </div>
+
+    <div class="certufy-tab-panel" id="tab-verify">
+      <div class="certufy-verify-title">Verify Certificate</div>
+      <div class="certufy-verify-subtitle">Enter the 12-character verification code</div>
+      <div class="certufy-verify-input-group">
+        <input type="text" id="verify-code-input" class="certufy-input" maxlength="12" placeholder="ABC123DEF456">
+        <button class="certufy-btn certufy-btn-primary" id="verify-btn">Verify</button>
+      </div>
+      <div id="verify-result" class="certufy-verify-result" style="display:none"></div>
+    </div>
+  </div>
+  <div class="certufy-popup-footer">
+    <span class="certufy-footer-text">CerTufy</span>
+    <span class="certufy-footer-status" id="connection-status">● Ready</span>
+  </div>
+</div>
+<script src="popup.js"></script>
+</body>
+</html>

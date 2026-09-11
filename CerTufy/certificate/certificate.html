@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CerTufy — Certificate</title>
+<link rel="stylesheet" href="certificate.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="certufy-cert-container">
+  <div class="certufy-cert-header">
+    <div class="certufy-cert-header-left"><span style="font-size:24px">🎓</span><span style="font-size:20px;font-weight:700">CerTufy</span></div>
+    <div class="certufy-cert-header-right"><button class="certufy-cert-btn certufy-cert-btn-secondary" id="back-btn">← Back</button></div>
+  </div>
+  <div class="certufy-cert-main">
+    <div id="cert-form-view">
+      <div class="certufy-cert-form-container">
+        <h1 class="certufy-cert-form-title">Generate Your Certificate</h1>
+        <p class="certufy-cert-form-subtitle">Complete the details below to create your verified certificate</p>
+        <div class="certufy-cert-form-field"><label>Full Name</label><input type="text" id="cert-name" class="certufy-cert-input" placeholder="Enter your name"></div>
+        <div class="certufy-cert-form-field"><label>Email</label><input type="email" id="cert-email" class="certufy-cert-input" placeholder="you@example.com"></div>
+        <div class="certufy-cert-form-field"><label>Template</label>
+          <select id="cert-template" class="certufy-cert-select">
+            <option value="Classic">Classic — Double border with gold seal</option>
+            <option value="Modern">Modern — Gradient background</option>
+            <option value="Elegant">Elegant — Dark theme with gold accents</option>
+            <option value="Minimal">Minimal — Clean whitespace design</option>
+            <option value="Creative">Creative — Video thumbnail overlay</option>
+          </select>
+        </div>
+        <div class="certufy-cert-form-actions">
+          <button class="certufy-cert-btn certufy-cert-btn-primary" id="generate-cert-submit">🎓 Generate</button>
+          <button class="certufy-cert-btn certufy-cert-btn-secondary" id="cancel-btn">Cancel</button>
+        </div>
+        <div id="cert-form-error" class="certufy-cert-form-error"></div>
+      </div>
+    </div>
+    <div id="cert-display-view" style="display:none">
+      <div class="certufy-cert-display-actions">
+        <button class="certufy-cert-btn certufy-cert-btn-primary" id="download-html-btn">📥 Download HTML</button>
+        <button class="certufy-cert-btn certufy-cert-btn-secondary" id="print-pdf-btn">🖨️ Print / PDF</button>
+        <button class="certufy-cert-btn certufy-cert-btn-secondary" id="share-btn">🔗 Share</button>
+      </div>
+      <div class="certufy-cert-display-wrapper" id="cert-display-wrapper"></div>
+    </div>
+  </div>
+  <div class="certufy-cert-footer">
+    <span>© CerTufy</span>
+    <span id="cert-status">● Ready</span>
+  </div>
+</div>
+<script src="certificate.js"></script>
+</body>
+</html>

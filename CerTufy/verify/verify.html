@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CerTufy — Verify</title>
+<link rel="stylesheet" href="verify.css">
+</head>
+<body>
+<div class="certufy-verify-container">
+  <div class="certufy-verify-header">
+    <div style="display:flex;align-items:center;gap:10px;color:#fff"><span style="font-size:22px">🔍</span><span style="font-size:20px;font-weight:700">CerTufy Verify</span></div>
+    <button class="certufy-verify-btn certufy-verify-btn-secondary" id="back-btn">← Back</button>
+  </div>
+  <div class="certufy-verify-main">
+    <div style="font-size:56px;margin-bottom:12px">✅</div>
+    <h1 style="font-size:28px;font-weight:700;margin-bottom:8px">Verify Certificate</h1>
+    <p style="font-size:15px;color:#666;margin-bottom:24px">Enter the 12-character verification code</p>
+    <div style="display:flex;gap:10px;width:100%;max-width:480px">
+      <input type="text" id="verify-code-input" class="certufy-verify-input" maxlength="12" placeholder="ABC123DEF456">
+      <button class="certufy-verify-btn certufy-verify-btn-primary" id="verify-btn">Verify</button>
+    </div>
+    <div id="verify-result" class="certufy-verify-result" style="display:none"></div>
+  </div>
+  <div class="certufy-verify-footer">
+    <span>© CerTufy</span>
+    <span id="verify-status" style="color:#4CAF50;font-weight:500">● Ready</span>
+  </div>
+</div>
+<script src="verify.js"></script>
+</body>
+</html>
